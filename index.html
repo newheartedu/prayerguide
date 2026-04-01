@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>平鎮浸信會 幸福禱告手冊 | PJBC</title>
     
-    <!-- Open Graph 社群分享標籤 (已移除 og:image) -->
+    <!-- Open Graph 社群分享標籤 -->
     <meta property="og:title" content="平鎮浸信會 幸福禱告手冊 | PJBC">
     <meta property="og:description" content="最幸福的教會・為您祝福。領取天父給你的專屬話語，並透過八大生命祝福禱告經歷平安。">
     <meta property="og:type" content="website">
@@ -155,7 +155,6 @@
                     </button>
                     <div id="hero-drawer-content" class="max-h-0 overflow-hidden transition-all duration-300 opacity-0">
                         <div class="px-5 pb-5 pt-2 flex flex-col gap-3">
-                            <!-- 彈出表單按鈕 -->
                             <button id="openJoinUsBtn" class="w-full flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl border-2 border-brand-primary text-brand-primary bg-white/80 text-sm font-bold hover:bg-brand-primary hover:text-white transition-colors shadow-sm">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
                                 <span class="zh-text">加入我們</span>
@@ -384,6 +383,7 @@
             <!-- 表單內容區塊 (可滾動) -->
             <div class="p-5 md:p-6 overflow-y-auto hide-scrollbar flex-grow bg-brand-light" id="joinUsFormContent">
                 <form id="joinUsForm" action="https://formsubmit.co/jbeeti@gmail.com" method="POST" class="space-y-6">
+                    <!-- FormSubmit 隱藏設定 -->
                     <input type="hidden" name="_subject" value="【平鎮浸信會】新人留名單 - 新回覆">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
@@ -662,69 +662,67 @@
         </div>
     </div>
 
-    <!-- 刮刮卡彈窗 Modal (按鈕強制固定在底部區塊) -->
+    <!-- ★ 調整恩典籤結構，使用 flex 佈局將按鈕牢牢鎖在最底端 ★ -->
     <div id="graceModal" class="modal-fade fixed inset-0 z-50 flex items-center justify-center bg-gray-900/80 backdrop-blur-sm p-4">
-        <!-- 卡片主體：給予明確高度，確保底部按鈕區塊永遠貼齊下緣 -->
-        <div class="relative w-full max-w-[360px] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col" style="height: 82vh; min-height: 520px; max-height: 700px;">
+        <!-- 卡片主體，新增 flex flex-col 保證內容撐滿 480px -->
+        <div class="relative w-full max-w-[360px] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col" style="min-height: 480px;">
             
-            <!-- 底層：結果內容 (拆分為「可滾動內容區」與「固定底部按鈕區」) -->
-            <div id="graceResultContent" class="flex-1 flex flex-col bg-white overflow-hidden relative">
+            <!-- 底層：結果內容，新增 flex-grow 佔滿全高 -->
+            <div id="graceResultContent" class="flex-grow w-full bg-white flex flex-col pt-6 pb-5 px-5 relative">
                 
-                <!-- 內容區：內容過長可滾動 -->
-                <div class="flex-1 overflow-y-auto hide-scrollbar pt-8 px-6 pb-4">
-                    <div class="flex justify-center mb-4">
-                        <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-[#EEF2F6] text-brand-navy rounded-full text-sm font-bold">
-                            <span>✨</span>
-                            <span id="gDate" class="tracking-wider"></span>
-                            <span class="text-gray-400">|</span>
-                            <span id="gThemeZh" class="zh-text"></span>
-                            <span id="gThemeEn" class="en-text"></span>
-                        </div>
+                <div class="flex justify-center mb-3">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-[#EEF2F6] text-brand-navy rounded-full text-sm font-bold">
+                        <span>✨</span>
+                        <span id="gDate" class="tracking-wider"></span>
+                        <span class="text-gray-400">|</span>
+                        <span id="gThemeZh" class="zh-text"></span>
+                        <span id="gThemeEn" class="en-text"></span>
                     </div>
-
-                    <h3 class="text-center font-serif text-2xl font-black text-brand-navy mb-5 z-10">
-                        <span id="gTitleZh" class="zh-text"></span>
-                        <span id="gTitleEn" class="en-text"></span>
-                    </h3>
-
-                    <div class="text-center relative py-6 mb-3 flex flex-col items-center justify-center min-h-[100px] bg-brand-light/30 rounded-xl overflow-hidden">
-                        <span class="font-serif text-[6rem] text-brand-secondary/10 absolute -top-8 -left-2 leading-none select-none z-0">“</span>
-                        <p class="font-bold text-brand-text text-[1.05rem] leading-relaxed relative z-10 px-4">
-                            <span id="gVerseZh" class="zh-text"></span>
-                            <span id="gVerseEn" class="en-text"></span>
-                        </p>
-                        <p class="text-[0.85rem] text-brand-primary font-bold mt-4 tracking-widest relative z-10 border-t border-brand-primary/20 pt-3 w-3/4 mx-auto">
-                            <span id="gRefZh" class="zh-text"></span>
-                            <span id="gRefEn" class="en-text"></span>
-                        </p>
-                        <span class="font-serif text-[6rem] text-brand-secondary/10 absolute -bottom-14 -right-2 leading-none rotate-180 select-none z-0">“</span>
-                    </div>
-
-                    <div class="bg-[#F8FAFC] rounded-xl p-4 mb-5 text-center z-10">
-                        <p class="text-brand-text font-bold leading-relaxed text-[0.95rem]">
-                            <span id="gMsgZh" class="zh-text"></span>
-                            <span id="gMsgEn" class="en-text"></span>
-                        </p>
-                    </div>
-
-                    <div class="flex flex-wrap justify-center gap-2 pb-2 z-10" id="gTags"></div>
                 </div>
 
-                <!-- 按鈕區：不參與滾動，死死固定在卡片最底部 -->
-                <div class="px-6 pb-6 pt-3 bg-white border-t border-brand-secondary/10 flex-shrink-0 relative z-10">
-                    <div class="flex items-center gap-3">
-                        <button id="shareBtn" class="w-12 h-12 flex items-center justify-center bg-brand-navy/10 text-brand-navy rounded-xl border border-brand-navy/20 hover:bg-brand-navy hover:text-white transition-all duration-300 flex-shrink-0" title="分享到社群">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
-                        </button>
-                        <button id="closeModalBtn" class="flex-grow py-3 bg-brand-navy text-white rounded-xl font-bold text-lg hover:bg-opacity-90 transition-opacity">
-                            <span class="zh-text">關閉</span>
-                            <span class="en-text">Close</span>
-                        </button>
-                    </div>
+                <h3 class="text-center font-serif text-2xl font-black text-brand-navy mb-4 z-10">
+                    <span id="gTitleZh" class="zh-text"></span>
+                    <span id="gTitleEn" class="en-text"></span>
+                </h3>
+
+                <div class="text-center relative py-6 mb-2 flex flex-col items-center justify-center min-h-[100px] bg-brand-light/30 rounded-xl overflow-hidden">
+                    <span class="font-serif text-[6rem] text-brand-secondary/10 absolute -top-8 -left-2 leading-none select-none z-0">“</span>
+                    <p class="font-bold text-brand-text text-[1.05rem] leading-relaxed relative z-10 px-4">
+                        <span id="gVerseZh" class="zh-text"></span>
+                        <span id="gVerseEn" class="en-text"></span>
+                    </p>
+                    <p class="text-[0.85rem] text-brand-primary font-bold mt-3 tracking-widest relative z-10 border-t border-brand-primary/20 pt-2 w-3/4 mx-auto">
+                        <span id="gRefZh" class="zh-text"></span>
+                        <span id="gRefEn" class="en-text"></span>
+                    </p>
+                    <span class="font-serif text-[6rem] text-brand-secondary/10 absolute -bottom-14 -right-2 leading-none rotate-180 select-none z-0">“</span>
+                </div>
+
+                <div class="bg-[#F8FAFC] rounded-xl p-4 mb-4 text-center z-10">
+                    <p class="text-brand-text font-bold leading-relaxed text-[0.95rem]">
+                        <span id="gMsgZh" class="zh-text"></span>
+                        <span id="gMsgEn" class="en-text"></span>
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-2 mb-4 z-10" id="gTags"></div>
+
+                <!-- 利用 flex-grow 佔據剩下的空間，這會將下方的按鈕推到畫面最底部 -->
+                <div class="flex-grow"></div>
+
+                <!-- 鎖定在最底端的按鈕區塊 -->
+                <div class="flex items-center gap-3 w-full mt-auto pt-2 z-10">
+                    <button id="shareBtn" class="w-12 h-12 flex items-center justify-center bg-brand-navy/10 text-brand-navy rounded-xl border border-brand-navy/20 hover:bg-brand-navy hover:text-white transition-all duration-300 flex-shrink-0" title="分享到社群">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                    </button>
+                    <button id="closeModalBtn" class="flex-grow py-3 bg-brand-navy text-white rounded-xl font-bold text-lg hover:bg-opacity-90 transition-opacity">
+                        <span class="zh-text">關閉</span>
+                        <span class="en-text">Close</span>
+                    </button>
                 </div>
             </div>
 
-            <!-- 表層：刮刮卡遮罩 (絕對定位覆蓋整張卡片) -->
+            <!-- 表層：刮刮卡遮罩 -->
             <div id="scratchWrapper" class="absolute inset-0 z-20 rounded-2xl overflow-hidden flex flex-col justify-end pb-8">
                 <canvas id="scratchCanvas" class="absolute inset-0 w-full h-full cursor-pointer"></canvas>
                 
@@ -910,7 +908,6 @@
         const extraTagsZh = ["#恩典", "#平安", "#力量", "#盼望", "#喜樂", "#同在", "#愛", "#光", "#祝福", "#自由", "#醫治", "#勇敢", "#更新", "#看顧"];
         const extraTagsEn = ["#Grace", "#Peace", "#Strength", "#Hope", "#Joy", "#Presence", "#Love", "#Light", "#Blessing", "#Freedom", "#Healing", "#Brave", "#Renewal", "#Care"];
 
-        // 利用核心的 34 句基礎資料，搭配不同的標籤與微調，擴展為 300 張卡片庫
         for (let i = 0; i < 300; i++) {
             const base = baseCards[i % baseCards.length];
             const extraIdx1 = (i * 3) % extraTagsZh.length;
@@ -944,9 +941,8 @@
         let isDrawing = false;
         let isScratchedComplete = false;
         let currentGraceCard = null;
-        let lastCardIndex = -1; // 記錄上一次抽到的籤，避免連續重複
+        let lastCardIndex = -1; 
         
-        // 用於儲存背景預先產生的圖卡檔案
         let preloadedShareFile = null;
         let isGeneratingImage = false;
 
@@ -954,7 +950,7 @@
             const todayStr = new Date().toISOString().split('T')[0].replace(/-/g, '.');
             document.getElementById('gDate').textContent = todayStr;
             
-            // ★ 隨機抽取邏輯 (防連續重複) ★
+            // 隨機抽取邏輯 (防連續重複)
             let randomIndex;
             do {
                 randomIndex = Math.floor(Math.random() * graceCardsDatabase.length);
@@ -987,7 +983,6 @@
             graceModal.classList.add('show');
             document.body.style.overflow = 'hidden';
 
-            // 背景預先製作好分享圖片
             preloadShareImage();
         });
 
@@ -1019,12 +1014,11 @@
 
             ctx.globalCompositeOperation = 'source-over';
             
-            // 繪製淺一色階的綠色漸層
             const gradient = ctx.createRadialGradient(
                 scratchCanvas.width / 2, scratchCanvas.height / 2, 0, 
                 scratchCanvas.width / 2, scratchCanvas.height / 2, scratchCanvas.width
             );
-            gradient.addColorStop(0, '#8A9E7D'); // 較淺的綠色
+            gradient.addColorStop(0, '#8A9E7D'); 
             gradient.addColorStop(1, '#6B7A5F');
             
             ctx.fillStyle = gradient; 
@@ -1032,7 +1026,7 @@
             
             ctx.lineJoin = "round";
             ctx.lineCap = "round";
-            ctx.lineWidth = 40; // 畫筆寬度
+            ctx.lineWidth = 40; 
         }
 
         function getMousePos(evt) {
@@ -1046,7 +1040,6 @@
             if(isScratchedComplete) return;
             isDrawing = true;
             
-            // 開始刮第一筆時，自動隱藏表面文字與按鈕，不阻擋視線
             document.getElementById('scratchOverlayText').style.opacity = '0';
             document.getElementById('quickOpenBtn').style.opacity = '0';
 
@@ -1078,7 +1071,7 @@
         let scratchPoints = 0;
         function checkScratchedRatio() {
             scratchPoints++;
-            if (scratchPoints > 120 && !isScratchedComplete) { // 提高自動解鎖的門檻
+            if (scratchPoints > 120 && !isScratchedComplete) {
                 revealCard();
                 scratchPoints = 0;
             }
@@ -1093,7 +1086,6 @@
             
             const isEng = currentLang === 'en';
             
-            // 1. 將資料填入隱藏的圖卡模板
             document.getElementById('scDate').textContent = document.getElementById('gDate').textContent;
             document.getElementById('scTheme').textContent = isEng ? currentGraceCard.themeEn : currentGraceCard.themeZh;
             document.getElementById('scTitle').textContent = isEng ? currentGraceCard.titleEn : currentGraceCard.titleZh;
@@ -1104,7 +1096,6 @@
             document.getElementById('scMsg').textContent = isEng ? currentGraceCard.msgEn : currentGraceCard.msgZh;
             document.getElementById('scTags').textContent = isEng ? currentGraceCard.tagsEn.join('   ') : currentGraceCard.tagsZh.join('   ');
 
-            // 2. 背景靜默產生圖片
             try {
                 const targetNode = document.getElementById('shareTemplate');
                 const canvas = await html2canvas(targetNode, {
@@ -1113,7 +1104,6 @@
                     backgroundColor: '#E8EFE9'
                 });
                 
-                // 使用 Promise 包裝 toBlob
                 const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
                 preloadedShareFile = new File([blob], `PJBC_GraceCard_${Date.now()}.png`, { type: 'image/png' });
             } catch(e) {
@@ -1123,37 +1113,30 @@
             }
         }
 
-        // 當點擊分享按鈕時，直接呼叫 navigator.share，不經過任何耗時操作
         shareBtn.addEventListener('click', async () => {
             if (!currentGraceCard) return;
 
-            // 例外情況：如果使用者點太快，圖片還在背景製作中
             if (isGeneratingImage || !preloadedShareFile) {
-                // 為了避免 alert 阻擋，我們改變按鈕顯示狀態，並使用 setTimeout 重試
                 const originalContent = shareBtn.innerHTML;
                 shareBtn.innerHTML = '<div class="spinner border-brand-navy border-t-transparent"></div>';
                 
-                // 等待一下再試
                 setTimeout(() => {
                     shareBtn.innerHTML = originalContent;
-                    shareBtn.click(); // 重新觸發點擊
+                    shareBtn.click();
                 }, 500);
                 return;
             }
 
             try {
-                // 原生分享 API (強迫以純檔案分享，完全不帶有 title 或 text，確保不出現任何文字干擾)
                 if (navigator.canShare && navigator.canShare({ files: [preloadedShareFile] })) {
                     await navigator.share({
-                        files: [preloadedShareFile] // 僅傳入 files，移除任何其他文字參數
+                        files: [preloadedShareFile]
                     });
                 } else {
-                    // 若裝置不支援原生圖片分享，則降級為直接下載檔案
                     downloadFallback(preloadedShareFile);
                 }
             } catch(err) {
                 console.log('Share canceled or failed', err);
-                // 忽略使用者手動取消的 AbortError，只有真正的系統錯誤才進入下載
                 if (err.name !== 'AbortError') {
                     downloadFallback(preloadedShareFile);
                 }
@@ -1347,7 +1330,7 @@
         const contactBtn = document.getElementById('contactBtn');
         if (contactBtn) {
             contactBtn.addEventListener('click', function(e) {
-                e.preventDefault(); // 阻止預設的錨點跳轉行為，避免被環境阻擋
+                e.preventDefault(); 
                 const target = document.getElementById('contact');
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1367,7 +1350,6 @@
         const closeJoinUsSuccessBtn = document.getElementById('closeJoinUsSuccessBtn');
 
         openJoinUsBtn.addEventListener('click', () => {
-            // 重置表單狀態
             joinUsForm.reset();
             joinUsFormContent.classList.remove('hidden');
             joinUsSuccessMsg.classList.add('hidden');
@@ -1387,7 +1369,6 @@
             document.body.style.overflow = '';
         });
 
-        // 攔截表單的預設送出行為，改用 AJAX 發送
         joinUsForm.addEventListener('submit', function(e) {
             e.preventDefault();
             joinUsErrorMsg.classList.add('hidden');

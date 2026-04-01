@@ -664,14 +664,14 @@
 
     <!-- ★ 調整恩典籤結構，使用 flex 佈局將按鈕牢牢鎖在最底端 ★ -->
     <div id="graceModal" class="modal-fade fixed inset-0 z-50 flex items-center justify-center bg-gray-900/80 backdrop-blur-sm p-4">
-        <!-- 卡片主體，移除所有強制高度，微調寬度至 340px 以維持完美的長寬比例 -->
-        <div class="relative w-[92%] max-w-[340px] bg-white rounded-[1.5rem] shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+        <!-- 卡片主體，移除 max-h-[90vh] 讓內容自然撐開卡片，確保按鈕絕對不會被裁切 -->
+        <div class="relative w-[92%] max-w-[340px] bg-white rounded-[1.5rem] shadow-2xl overflow-hidden flex flex-col">
             
-            <!-- 底層：結果內容，完全依靠 p-6 內邊距與各區塊 mb 間距來自然撐開 -->
-            <div id="graceResultContent" class="w-full bg-white flex flex-col pt-7 pb-6 px-6 relative overflow-y-auto hide-scrollbar">
+            <!-- 底層：結果內容，縮減內距與間距，並移除捲軸設定 -->
+            <div id="graceResultContent" class="w-full bg-white flex flex-col p-5 relative">
                 
-                <div class="flex justify-center mb-4 flex-shrink-0">
-                    <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-[#F4F6F9] text-[#34465B] rounded-full text-[0.85rem] font-bold">
+                <div class="flex justify-center mb-3 flex-shrink-0">
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#F4F6F9] text-[#34465B] rounded-full text-[0.8rem] font-bold">
                         <span>✨</span>
                         <span id="gDate" class="tracking-wider"></span>
                         <span class="text-gray-300 font-normal">|</span>
@@ -680,38 +680,38 @@
                     </div>
                 </div>
 
-                <h3 class="text-center font-serif text-[1.65rem] font-black text-[#2A3F54] mb-4 z-10 tracking-widest flex-shrink-0">
+                <h3 class="text-center font-serif text-[1.45rem] font-black text-[#2A3F54] mb-3 z-10 tracking-widest flex-shrink-0">
                     <span id="gTitleZh" class="zh-text"></span>
                     <span id="gTitleEn" class="en-text"></span>
                 </h3>
 
-                <div class="bg-[#FCFBF9] rounded-[1rem] p-5 mb-3 text-center z-10 flex flex-col items-center justify-center flex-shrink-0">
-                    <p class="font-bold text-gray-900 text-[1.05rem] leading-relaxed relative z-10 tracking-wide w-full">
+                <div class="bg-[#FCFBF9] rounded-[1rem] p-4 mb-3 text-center z-10 flex flex-col items-center justify-center flex-shrink-0">
+                    <p class="font-bold text-gray-900 text-[1rem] leading-relaxed relative z-10 tracking-wide w-full">
                         <span id="gVerseZh" class="zh-text"></span>
                         <span id="gVerseEn" class="en-text"></span>
                     </p>
-                    <div class="w-[85%] h-[1px] bg-gray-200 my-4"></div>
-                    <p class="text-[0.9rem] text-[#6B7A5F] font-bold tracking-widest relative z-10">
+                    <div class="w-[85%] h-[1px] bg-gray-200 my-3"></div>
+                    <p class="text-[0.85rem] text-[#6B7A5F] font-bold tracking-widest relative z-10">
                         <span id="gRefZh" class="zh-text"></span>
                         <span id="gRefEn" class="en-text"></span>
                     </p>
                 </div>
 
-                <div class="bg-[#F4F6F9] rounded-[1rem] p-5 mb-4 text-center z-10 flex-shrink-0">
-                    <p class="text-gray-800 font-bold leading-relaxed text-[0.95rem] tracking-wide">
+                <div class="bg-[#F4F6F9] rounded-[1rem] p-4 mb-3 text-center z-10 flex-shrink-0">
+                    <p class="text-gray-800 font-bold leading-relaxed text-[0.9rem] tracking-wide">
                         <span id="gMsgZh" class="zh-text"></span>
                         <span id="gMsgEn" class="en-text"></span>
                     </p>
                 </div>
 
-                <div class="flex flex-wrap justify-center gap-2 mb-6 z-10 flex-shrink-0" id="gTags"></div>
+                <div class="flex flex-wrap justify-center gap-1.5 mb-5 z-10 flex-shrink-0" id="gTags"></div>
 
                 <!-- 鎖定在最底端的按鈕區塊 -->
-                <div class="flex items-center gap-3 w-full mt-auto z-10 flex-shrink-0">
-                    <button id="shareBtn" class="w-[3.25rem] h-[3.25rem] flex items-center justify-center bg-[#F4F6F9] text-[#34465B] rounded-[0.8rem] border border-gray-200 hover:bg-[#E2E8F0] transition-all duration-300 flex-shrink-0 shadow-sm" title="分享到社群">
+                <div class="flex items-center gap-2.5 w-full mt-auto z-10 flex-shrink-0">
+                    <button id="shareBtn" class="w-[3rem] h-[3rem] flex items-center justify-center bg-[#F4F6F9] text-[#34465B] rounded-[0.8rem] border border-gray-200 hover:bg-[#E2E8F0] transition-all duration-300 flex-shrink-0 shadow-sm" title="分享到社群">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
                     </button>
-                    <button id="closeModalBtn" class="flex-grow h-[3.25rem] bg-[#3A4B60] text-white rounded-[0.8rem] font-bold text-[1.05rem] hover:bg-opacity-90 transition-opacity tracking-widest shadow-sm">
+                    <button id="closeModalBtn" class="flex-grow h-[3rem] bg-[#3A4B60] text-white rounded-[0.8rem] font-bold text-[1rem] hover:bg-opacity-90 transition-opacity tracking-widest shadow-sm">
                         <span class="zh-text">關閉</span>
                         <span class="en-text">Close</span>
                     </button>
@@ -788,21 +788,21 @@
             <!-- Verse Area -->
             <div style="position: relative; padding: 0 40px; width: 100%; text-align: center;">
                 <span style="font-family: serif; font-size: 250px; color: #D5E0D5; opacity: 0.25; position: absolute; top: -140px; left: -20px; z-index: -1;">“</span>
-                <p id="scVerse" style="font-family: 'Noto Serif TC', serif; font-size: 42px; color: #3B4A3B; text-align: center; line-height: 1.6; font-weight: 700; margin-bottom: 40px; letter-spacing: 2px;">他醫治傷心的人，裹好他們的傷處</p>
+                <p id="scVerse" style="font-family: 'Noto Serif TC', serif; font-size: 46px; color: #3B4A3B; text-align: center; line-height: 1.6; font-weight: 700; margin-bottom: 40px; letter-spacing: 2px;">他醫治傷心的人，裹好他們的傷處</p>
                 
                 <p id="scRef" style="font-size: 30px; color: #708770; font-weight: 900; letter-spacing: 4px; margin-bottom: 90px;">— 詩篇 147:3 —</p>
                 <span style="font-family: serif; font-size: 250px; color: #D5E0D5; opacity: 0.25; position: absolute; bottom: -80px; right: -20px; transform: rotate(180deg); z-index: -1;">“</span>
             </div>
             
             <!-- Message Box -->
-            <div style="background-color: #EBF0EB; border-radius: 20px; padding: 60px 50px; text-align: center; width: 100%; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
-                <p id="scMsg" style="font-size: 34px; color: #415241; line-height: 1.9; font-weight: 700; letter-spacing: 2px;">孩子，挫折讓你的心受傷了，流血了。讓我靠近你，輕柔地為你清洗傷口，為你敷上醫治的膏藥。在我的愛中，所有的痛都會慢慢痊癒</p>
+            <div style="background-color: #EBF0EB; border-radius: 20px; padding: 70px 60px; text-align: center; width: 100%; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                <p id="scMsg" style="font-size: 38px; color: #415241; line-height: 1.9; font-weight: 700; letter-spacing: 2px;">孩子，挫折讓你的心受傷了，流血了。讓我靠近你，輕柔地為你清洗傷口，為你敷上醫治的膏藥。在我的愛中，所有的痛都會慢慢痊癒</p>
             </div>
             
             <div style="flex-grow: 1;"></div>
             
-            <!-- Tags (改為 Flex 容器，讓標籤自動換行) -->
-            <div id="scTags" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; margin-bottom: 50px; width: 100%; box-sizing: border-box; padding: 0 20px;"></div>
+            <!-- Tags -->
+            <div id="scTags" style="font-size: 32px; color: #708770; font-weight: 900; letter-spacing: 4px; margin-bottom: 70px;">#挫折  #受傷  #醫治  #溫柔</div>
             
             <!-- Footer -->
             <div style="display: flex; items-center; justify-content: center; gap: 20px; color: #88A188; font-size: 28px; font-weight: 900; letter-spacing: 6px; margin-bottom: 20px;">
@@ -970,8 +970,8 @@
             tagsContainer.innerHTML = '';
             currentGraceCard.tagsZh.forEach((tag, idx) => {
                 const span = document.createElement('span');
-                // Tag 樣式：比照設計圖縮小高度與調整文字
-                span.className = 'px-3 py-1 bg-white text-[#6B7A5F] font-bold text-[0.85rem] rounded-full border border-gray-200 tracking-wider shadow-sm';
+                // Tag 樣式：調小 padding 與字體，避免在小螢幕佔用過多空間
+                span.className = 'px-2.5 py-1 bg-white text-[#6B7A5F] font-bold text-[0.8rem] rounded-full border border-gray-200 tracking-wider shadow-sm';
                 span.innerHTML = `<span class="zh-text">${tag}</span><span class="en-text">${currentGraceCard.tagsEn[idx]}</span>`;
                 tagsContainer.appendChild(span);
             });
@@ -1091,25 +1091,7 @@
             const refText = isEng ? currentGraceCard.refEn : currentGraceCard.refZh;
             document.getElementById('scRef').textContent = `— ${refText} —`;
             document.getElementById('scMsg').textContent = isEng ? currentGraceCard.msgEn : currentGraceCard.msgZh;
-            
-            // 將圖卡裡的標籤動態生成為 UI 上的圓角膠囊形狀 (確保安全換行不會跑版)
-            const scTagsContainer = document.getElementById('scTags');
-            scTagsContainer.innerHTML = '';
-            const tagsArr = isEng ? currentGraceCard.tagsEn : currentGraceCard.tagsZh;
-            tagsArr.forEach(tag => {
-                const span = document.createElement('span');
-                span.textContent = tag;
-                span.style.padding = '12px 36px';
-                span.style.backgroundColor = '#FFFFFF';
-                span.style.color = '#6B7A5F';
-                span.style.fontSize = '30px';
-                span.style.fontWeight = '900';
-                span.style.borderRadius = '50px';
-                span.style.border = '2px solid #EAEFEA';
-                span.style.letterSpacing = '2px';
-                span.style.boxShadow = '0 4px 12px rgba(0,0,0,0.03)';
-                scTagsContainer.appendChild(span);
-            });
+            document.getElementById('scTags').textContent = isEng ? currentGraceCard.tagsEn.join('   ') : currentGraceCard.tagsZh.join('   ');
 
             try {
                 const targetNode = document.getElementById('shareTemplate');

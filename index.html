@@ -788,21 +788,21 @@
             <!-- Verse Area -->
             <div style="position: relative; padding: 0 40px; width: 100%; text-align: center;">
                 <span style="font-family: serif; font-size: 250px; color: #D5E0D5; opacity: 0.25; position: absolute; top: -140px; left: -20px; z-index: -1;">“</span>
-                <p id="scVerse" style="font-family: 'Noto Serif TC', serif; font-size: 46px; color: #3B4A3B; text-align: center; line-height: 1.6; font-weight: 700; margin-bottom: 40px; letter-spacing: 2px;">他醫治傷心的人，裹好他們的傷處</p>
+                <p id="scVerse" style="font-family: 'Noto Serif TC', serif; font-size: 42px; color: #3B4A3B; text-align: center; line-height: 1.6; font-weight: 700; margin-bottom: 40px; letter-spacing: 2px;">他醫治傷心的人，裹好他們的傷處</p>
                 
                 <p id="scRef" style="font-size: 30px; color: #708770; font-weight: 900; letter-spacing: 4px; margin-bottom: 90px;">— 詩篇 147:3 —</p>
                 <span style="font-family: serif; font-size: 250px; color: #D5E0D5; opacity: 0.25; position: absolute; bottom: -80px; right: -20px; transform: rotate(180deg); z-index: -1;">“</span>
             </div>
             
             <!-- Message Box -->
-            <div style="background-color: #EBF0EB; border-radius: 20px; padding: 70px 60px; text-align: center; width: 100%; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
-                <p id="scMsg" style="font-size: 38px; color: #415241; line-height: 1.9; font-weight: 700; letter-spacing: 2px;">孩子，挫折讓你的心受傷了，流血了。讓我靠近你，輕柔地為你清洗傷口，為你敷上醫治的膏藥。在我的愛中，所有的痛都會慢慢痊癒</p>
+            <div style="background-color: #EBF0EB; border-radius: 20px; padding: 60px 50px; text-align: center; width: 100%; box-shadow: 0 4px 20px rgba(0,0,0,0.02);">
+                <p id="scMsg" style="font-size: 34px; color: #415241; line-height: 1.9; font-weight: 700; letter-spacing: 2px;">孩子，挫折讓你的心受傷了，流血了。讓我靠近你，輕柔地為你清洗傷口，為你敷上醫治的膏藥。在我的愛中，所有的痛都會慢慢痊癒</p>
             </div>
             
             <div style="flex-grow: 1;"></div>
             
-            <!-- Tags -->
-            <div id="scTags" style="font-size: 32px; color: #708770; font-weight: 900; letter-spacing: 4px; margin-bottom: 70px;">#挫折  #受傷  #醫治  #溫柔</div>
+            <!-- Tags (改為 Flex 容器，讓標籤自動換行) -->
+            <div id="scTags" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; margin-bottom: 50px; width: 100%; box-sizing: border-box; padding: 0 20px;"></div>
             
             <!-- Footer -->
             <div style="display: flex; items-center; justify-content: center; gap: 20px; color: #88A188; font-size: 28px; font-weight: 900; letter-spacing: 6px; margin-bottom: 20px;">
@@ -1091,7 +1091,25 @@
             const refText = isEng ? currentGraceCard.refEn : currentGraceCard.refZh;
             document.getElementById('scRef').textContent = `— ${refText} —`;
             document.getElementById('scMsg').textContent = isEng ? currentGraceCard.msgEn : currentGraceCard.msgZh;
-            document.getElementById('scTags').textContent = isEng ? currentGraceCard.tagsEn.join('   ') : currentGraceCard.tagsZh.join('   ');
+            
+            // 將圖卡裡的標籤動態生成為 UI 上的圓角膠囊形狀 (確保安全換行不會跑版)
+            const scTagsContainer = document.getElementById('scTags');
+            scTagsContainer.innerHTML = '';
+            const tagsArr = isEng ? currentGraceCard.tagsEn : currentGraceCard.tagsZh;
+            tagsArr.forEach(tag => {
+                const span = document.createElement('span');
+                span.textContent = tag;
+                span.style.padding = '12px 36px';
+                span.style.backgroundColor = '#FFFFFF';
+                span.style.color = '#6B7A5F';
+                span.style.fontSize = '30px';
+                span.style.fontWeight = '900';
+                span.style.borderRadius = '50px';
+                span.style.border = '2px solid #EAEFEA';
+                span.style.letterSpacing = '2px';
+                span.style.boxShadow = '0 4px 12px rgba(0,0,0,0.03)';
+                scTagsContainer.appendChild(span);
+            });
 
             try {
                 const targetNode = document.getElementById('shareTemplate');

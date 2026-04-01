@@ -668,10 +668,11 @@
         <div class="relative w-[92%] max-w-[340px] bg-white rounded-[1.5rem] shadow-2xl overflow-hidden flex flex-col min-h-[560px] sm:min-h-0">
             
             <!-- 底層：結果內容，手機版增加上下內距與區塊間距，網頁版透過 sm: 壓回緊湊設定 -->
-            <div id="graceResultContent" class="w-full bg-white flex flex-col px-5 py-8 sm:py-5 relative flex-grow">
+            <div id="graceResultContent" class="w-full bg-white flex flex-col px-6 py-8 sm:px-5 sm:py-5 relative flex-grow">
                 
+                <!-- 日期與主題：手機版字體稍微放大 text-[0.9rem]，網頁版 text-[0.8rem] -->
                 <div class="flex justify-center mb-5 sm:mb-3 flex-shrink-0">
-                    <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#F4F6F9] text-[#34465B] rounded-full text-[0.8rem] font-bold">
+                    <div class="inline-flex items-center gap-1.5 px-4 py-1.5 sm:px-3 sm:py-1 bg-[#F4F6F9] text-[#34465B] rounded-full text-[0.9rem] sm:text-[0.8rem] font-bold">
                         <span>✨</span>
                         <span id="gDate" class="tracking-wider"></span>
                         <span class="text-gray-300 font-normal">|</span>
@@ -680,40 +681,41 @@
                     </div>
                 </div>
 
-                <h3 class="text-center font-serif text-[1.5rem] sm:text-[1.45rem] font-black text-[#2A3F54] mb-5 sm:mb-3 z-10 tracking-widest flex-shrink-0">
+                <!-- 大標題：手機版放大到 text-[1.8rem]，網頁版 text-[1.45rem] -->
+                <h3 class="text-center font-serif text-[1.8rem] sm:text-[1.45rem] font-black text-[#2A3F54] mb-6 sm:mb-3 z-10 tracking-widest flex-shrink-0">
                     <span id="gTitleZh" class="zh-text"></span>
                     <span id="gTitleEn" class="en-text"></span>
                 </h3>
 
-                <!-- 經文區塊：手機版 py-5，網頁版 sm:p-4 -->
-                <div class="bg-[#FCFBF9] rounded-[1rem] py-5 px-4 sm:p-4 mb-5 sm:mb-3 text-center z-10 flex flex-col items-center justify-center flex-shrink-0">
-                    <p class="font-bold text-gray-900 text-[1rem] leading-relaxed relative z-10 tracking-wide w-full">
+                <!-- 經文區塊：手機版加大內距 py-6 px-5 與字體 text-[1.15rem]，網頁版壓回 -->
+                <div class="bg-[#FCFBF9] rounded-[1rem] py-6 px-5 sm:py-5 sm:px-4 mb-6 sm:mb-3 text-center z-10 flex flex-col items-center justify-center flex-shrink-0">
+                    <p class="font-bold text-gray-900 text-[1.15rem] sm:text-[1rem] leading-relaxed relative z-10 tracking-wide w-full">
                         <span id="gVerseZh" class="zh-text"></span>
                         <span id="gVerseEn" class="en-text"></span>
                     </p>
-                    <div class="w-[85%] h-[1px] bg-gray-200 my-4 sm:my-3"></div>
-                    <p class="text-[0.85rem] text-[#6B7A5F] font-bold tracking-widest relative z-10">
+                    <div class="w-[85%] h-[1px] bg-gray-200 my-5 sm:my-3"></div>
+                    <p class="text-[0.95rem] sm:text-[0.85rem] text-[#6B7A5F] font-bold tracking-widest relative z-10">
                         <span id="gRefZh" class="zh-text"></span>
                         <span id="gRefEn" class="en-text"></span>
                     </p>
                 </div>
 
-                <!-- 解說區塊：手機版 py-5，網頁版 sm:p-4 -->
-                <div class="bg-[#F4F6F9] rounded-[1rem] py-5 px-4 sm:p-4 mb-6 sm:mb-3 text-center z-10 flex-shrink-0">
-                    <p class="text-gray-800 font-bold leading-relaxed text-[0.9rem] tracking-wide">
+                <!-- 解說區塊：手機版字體放大到 text-[1.05rem] -->
+                <div class="bg-[#F4F6F9] rounded-[1rem] py-6 px-5 sm:py-5 sm:px-4 mb-8 sm:mb-3 text-center z-10 flex-shrink-0">
+                    <p class="text-gray-800 font-bold leading-relaxed text-[1.05rem] sm:text-[0.9rem] tracking-wide">
                         <span id="gMsgZh" class="zh-text"></span>
                         <span id="gMsgEn" class="en-text"></span>
                     </p>
                 </div>
 
-                <div class="flex flex-wrap justify-center gap-1.5 mb-8 sm:mb-5 z-10 flex-shrink-0" id="gTags"></div>
+                <div class="flex flex-wrap justify-center gap-2 sm:gap-1.5 mb-8 sm:mb-5 z-10 flex-shrink-0" id="gTags"></div>
 
-                <!-- 鎖定在最底端的按鈕區塊 -->
-                <div class="flex items-center gap-2.5 w-full mt-auto z-10 flex-shrink-0">
-                    <button id="shareBtn" class="w-[3rem] h-[3rem] flex items-center justify-center bg-[#F4F6F9] text-[#34465B] rounded-[0.8rem] border border-gray-200 hover:bg-[#E2E8F0] transition-all duration-300 flex-shrink-0 shadow-sm" title="分享到社群">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                <!-- 鎖定在最底端的按鈕區塊：手機版按鈕也稍微加高加大 -->
+                <div class="flex items-center gap-3 sm:gap-2.5 w-full mt-auto z-10 flex-shrink-0">
+                    <button id="shareBtn" class="w-[3.5rem] h-[3.5rem] sm:w-[3rem] sm:h-[3rem] flex items-center justify-center bg-[#F4F6F9] text-[#34465B] rounded-[0.8rem] border border-gray-200 hover:bg-[#E2E8F0] transition-all duration-300 flex-shrink-0 shadow-sm" title="分享到社群">
+                        <svg class="w-6 h-6 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
                     </button>
-                    <button id="closeModalBtn" class="flex-grow h-[3rem] bg-[#3A4B60] text-white rounded-[0.8rem] font-bold text-[1rem] hover:bg-opacity-90 transition-opacity tracking-widest shadow-sm">
+                    <button id="closeModalBtn" class="flex-grow h-[3.5rem] sm:h-[3rem] bg-[#3A4B60] text-white rounded-[0.8rem] font-bold text-[1.15rem] sm:text-[1rem] hover:bg-opacity-90 transition-opacity tracking-widest shadow-sm">
                         <span class="zh-text">關閉</span>
                         <span class="en-text">Close</span>
                     </button>
@@ -725,17 +727,17 @@
                 <canvas id="scratchCanvas" class="absolute inset-0 w-full h-full cursor-pointer"></canvas>
                 
                 <div id="scratchOverlayText" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none transition-opacity duration-300">
-                    <div class="w-16 h-16 rounded-full bg-white/10 border-2 border-white/30 flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
-                        <svg class="w-8 h-8 text-white/90" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.4 7.6H22l-6.2 4.5 2.4 7.6-6.2-4.5-6.2 4.5 2.4-7.6-6.2-4.5h7.6z"/></svg>
+                    <div class="w-20 h-20 sm:w-16 sm:h-16 rounded-full bg-white/10 border-2 border-white/30 flex items-center justify-center mb-5 sm:mb-4 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                        <svg class="w-10 h-10 sm:w-8 sm:h-8 text-white/90" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.4 7.6H22l-6.2 4.5 2.4 7.6-6.2-4.5-6.2 4.5 2.4-7.6-6.2-4.5h7.6z"/></svg>
                     </div>
-                    <h2 class="text-xl font-black text-white tracking-widest drop-shadow-md">
+                    <h2 class="text-2xl sm:text-xl font-black text-white tracking-widest drop-shadow-md">
                         <span class="zh-text">刮開領取今日恩典</span>
                         <span class="en-text">SCRATCH FOR GRACE</span>
                     </h2>
-                    <p class="text-white/90 text-[0.8rem] mt-1 font-bold tracking-[0.2em] drop-shadow-md">DAILY GRACE</p>
+                    <p class="text-white/90 text-[0.95rem] sm:text-[0.8rem] mt-2 sm:mt-1 font-bold tracking-[0.2em] drop-shadow-md">DAILY GRACE</p>
                 </div>
 
-                <button id="quickOpenBtn" class="relative z-30 mx-auto px-6 py-2.5 bg-gray-900/60 backdrop-blur-sm text-white rounded-full font-bold text-sm flex items-center gap-2 hover:bg-gray-900 transition-all duration-300 border border-white/20 shadow-lg">
+                <button id="quickOpenBtn" class="relative z-30 mx-auto px-7 py-3 sm:px-6 sm:py-2.5 bg-gray-900/60 backdrop-blur-sm text-white rounded-full font-bold text-[1.05rem] sm:text-sm flex items-center gap-2 hover:bg-gray-900 transition-all duration-300 border border-white/20 shadow-lg">
                     <span class="zh-text">一鍵打開</span>
                     <span class="en-text">Open Instantly</span>
                 </button>
@@ -972,8 +974,8 @@
             tagsContainer.innerHTML = '';
             currentGraceCard.tagsZh.forEach((tag, idx) => {
                 const span = document.createElement('span');
-                // Tag 樣式：調小 padding 與字體，避免在小螢幕佔用過多空間
-                span.className = 'px-2.5 py-1 bg-white text-[#6B7A5F] font-bold text-[0.8rem] rounded-full border border-gray-200 tracking-wider shadow-sm';
+                // Tag 樣式：手機版 padding 與字體放大，網頁版壓回
+                span.className = 'px-3 py-1.5 sm:px-2.5 sm:py-1 bg-white text-[#6B7A5F] font-bold text-[0.9rem] sm:text-[0.8rem] rounded-full border border-gray-200 tracking-wider shadow-sm';
                 span.innerHTML = `<span class="zh-text">${tag}</span><span class="en-text">${currentGraceCard.tagsEn[idx]}</span>`;
                 tagsContainer.appendChild(span);
             });

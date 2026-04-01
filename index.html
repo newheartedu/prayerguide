@@ -382,7 +382,7 @@
 
             <!-- 表單內容區塊 (可滾動) -->
             <div class="p-5 md:p-6 overflow-y-auto hide-scrollbar flex-grow bg-brand-light" id="joinUsFormContent">
-                <form id="joinUsForm" action="https://formsubmit.co/ajax/jbeeti@gmail.com" method="POST" class="space-y-6">
+                <form id="joinUsForm" action="https://formsubmit.co/jbeeti@gmail.com" method="POST" class="space-y-6">
                     <!-- FormSubmit 隱藏設定 -->
                     <input type="hidden" name="_subject" value="【平鎮浸信會】新人留名單 - 新回覆">
                     <input type="hidden" name="_captcha" value="false">
@@ -1378,22 +1378,13 @@
             joinUsSubmitBtn.innerHTML = '<div class="spinner border-white border-t-transparent w-6 h-6"></div>';
             joinUsSubmitBtn.disabled = true;
 
-            // 將 FormData 轉換為 JSON 格式 (包含複選框處理，解決 AJAX 網路/CORS 錯誤)
-            const formData = new FormData(joinUsForm);
-            const formObj = {};
-            for (const key of formData.keys()) {
-                const values = formData.getAll(key);
-                // 若為複選框(如聚會選項)，則將陣列轉為逗號分隔的字串
-                formObj[key] = values.length > 1 ? values.join(', ') : values[0];
-            }
-
+            // 改回使用原生 FormData 搭配一般網址，確保能成功觸發 FormSubmit 的認證信機制
             fetch(joinUsForm.action, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
+                    'Accept': 'application/json' // 告訴伺服器回傳 JSON，不要跳轉頁面
                 },
-                body: JSON.stringify(formObj)
+                body: new FormData(joinUsForm)
             })
             .then(response => response.json())
             .then(data => {
@@ -1402,14 +1393,14 @@
                     joinUsSuccessMsg.classList.remove('hidden');
                     joinUsForm.reset(); // 成功後重置表單
                 } else {
-                    // 若信箱未啟用，會回傳 success: false
-                    console.error('FormSubmit Error Message:', data.message);
-                    joinUsErrorMsg.innerHTML = '<span class="zh-text">【信箱尚未啟用】請至 jbeeti@gmail.com 收信並點擊「Activate Form」。</span>';
+                    console.error('FormSubmit Error Message:', data);
+                    joinUsErrorMsg.innerHTML = '<span class="zh-text">系統已發送認證信！請至 jbeeti@gmail.com 收信並點擊「Activate Form」。</span>';
                     joinUsErrorMsg.classList.remove('hidden');
                 }
             }).catch(error => {
                 console.error('Fetch Error:', error);
-                joinUsErrorMsg.innerHTML = '<span class="zh-text">連線被拒絕。請登入 jbeeti@gmail.com 確認是否已點擊 FormSubmit 寄來的「啟用」信件。</span>';
+                // 第一次發送時，如果信箱沒認證，FormSubmit 有時會因為阻擋而產生 CORS 錯誤，但實際上信已經寄出了
+                joinUsErrorMsg.innerHTML = '<span class="zh-text">系統已嘗試發送認證信！請登入 jbeeti@gmail.com 確認是否收到「Activate Form」信件，點擊啟用後再送出一次。</span>';
                 joinUsErrorMsg.classList.remove('hidden');
             }).finally(() => {
                 joinUsSubmitBtn.innerHTML = originalText;

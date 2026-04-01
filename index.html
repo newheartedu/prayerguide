@@ -664,13 +664,13 @@
 
     <!-- ★ 調整恩典籤結構，使用 flex 佈局將按鈕牢牢鎖在最底端 ★ -->
     <div id="graceModal" class="modal-fade fixed inset-0 z-50 flex items-center justify-center bg-gray-900/80 backdrop-blur-sm p-4">
-        <!-- 卡片主體，針對手機版加入 min-h-[460px] 來增加約 1 公分的長度，網頁版 (sm) 維持原比例 -->
-        <div class="relative w-[92%] max-w-[340px] bg-white rounded-[1.5rem] shadow-2xl overflow-hidden flex flex-col min-h-[460px] sm:min-h-0">
+        <!-- 卡片主體，手機版 min-h-[560px] 拉長比例，網頁版透過 sm:min-h-0 嚴格限制高度不變 -->
+        <div class="relative w-[92%] max-w-[340px] bg-white rounded-[1.5rem] shadow-2xl overflow-hidden flex flex-col min-h-[560px] sm:min-h-0">
             
-            <!-- 底層：結果內容，手機版增加上下內距 (py-8)，並透過 flex-grow 自動填滿高度，網頁版維持 (sm:py-5) -->
+            <!-- 底層：結果內容，手機版增加上下內距與區塊間距，網頁版透過 sm: 壓回緊湊設定 -->
             <div id="graceResultContent" class="w-full bg-white flex flex-col px-5 py-8 sm:py-5 relative flex-grow">
                 
-                <div class="flex justify-center mb-3 flex-shrink-0">
+                <div class="flex justify-center mb-5 sm:mb-3 flex-shrink-0">
                     <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#F4F6F9] text-[#34465B] rounded-full text-[0.8rem] font-bold">
                         <span>✨</span>
                         <span id="gDate" class="tracking-wider"></span>
@@ -680,31 +680,33 @@
                     </div>
                 </div>
 
-                <h3 class="text-center font-serif text-[1.45rem] font-black text-[#2A3F54] mb-3 z-10 tracking-widest flex-shrink-0">
+                <h3 class="text-center font-serif text-[1.5rem] sm:text-[1.45rem] font-black text-[#2A3F54] mb-5 sm:mb-3 z-10 tracking-widest flex-shrink-0">
                     <span id="gTitleZh" class="zh-text"></span>
                     <span id="gTitleEn" class="en-text"></span>
                 </h3>
 
-                <div class="bg-[#FCFBF9] rounded-[1rem] p-4 mb-3 text-center z-10 flex flex-col items-center justify-center flex-shrink-0">
+                <!-- 經文區塊：手機版 py-5，網頁版 sm:p-4 -->
+                <div class="bg-[#FCFBF9] rounded-[1rem] py-5 px-4 sm:p-4 mb-5 sm:mb-3 text-center z-10 flex flex-col items-center justify-center flex-shrink-0">
                     <p class="font-bold text-gray-900 text-[1rem] leading-relaxed relative z-10 tracking-wide w-full">
                         <span id="gVerseZh" class="zh-text"></span>
                         <span id="gVerseEn" class="en-text"></span>
                     </p>
-                    <div class="w-[85%] h-[1px] bg-gray-200 my-3"></div>
+                    <div class="w-[85%] h-[1px] bg-gray-200 my-4 sm:my-3"></div>
                     <p class="text-[0.85rem] text-[#6B7A5F] font-bold tracking-widest relative z-10">
                         <span id="gRefZh" class="zh-text"></span>
                         <span id="gRefEn" class="en-text"></span>
                     </p>
                 </div>
 
-                <div class="bg-[#F4F6F9] rounded-[1rem] p-4 mb-3 text-center z-10 flex-shrink-0">
+                <!-- 解說區塊：手機版 py-5，網頁版 sm:p-4 -->
+                <div class="bg-[#F4F6F9] rounded-[1rem] py-5 px-4 sm:p-4 mb-6 sm:mb-3 text-center z-10 flex-shrink-0">
                     <p class="text-gray-800 font-bold leading-relaxed text-[0.9rem] tracking-wide">
                         <span id="gMsgZh" class="zh-text"></span>
                         <span id="gMsgEn" class="en-text"></span>
                     </p>
                 </div>
 
-                <div class="flex flex-wrap justify-center gap-1.5 mb-5 z-10 flex-shrink-0" id="gTags"></div>
+                <div class="flex flex-wrap justify-center gap-1.5 mb-8 sm:mb-5 z-10 flex-shrink-0" id="gTags"></div>
 
                 <!-- 鎖定在最底端的按鈕區塊 -->
                 <div class="flex items-center gap-2.5 w-full mt-auto z-10 flex-shrink-0">

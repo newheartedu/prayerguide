@@ -1388,7 +1388,7 @@
                 // 因為 no-cors 無法讀取回傳內容，我們假設請求成功送達
                 joinUsFormContent.classList.add('hidden');
                 
-                // 更新成功畫面，加入首次啟用的明確提醒
+                // 更新成功畫面
                 joinUsSuccessMsg.innerHTML = `
                     <div class="w-20 h-20 bg-brand-primary/10 text-brand-primary rounded-full flex items-center justify-center mb-6 border border-brand-primary/20">
                         <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
@@ -1397,12 +1397,6 @@
                         <span class="zh-text">表單已送出！</span>
                         <span class="en-text">Form Submitted!</span>
                     </h3>
-                    <div class="bg-red-50 border border-red-200 rounded-xl p-4 mb-6 w-full text-left">
-                        <p class="text-red-600 font-bold text-[0.9rem] leading-relaxed">
-                            <span class="zh-text">⚠️ <b>管理員注意：</b>系統已寄出認證信！<br>請務必至 <span class="underline">jbeeti@gmail.com</span> 收信，並點擊信中的「Activate Form」按鈕，後續才能正常收信喔！（如果您已啟用過，請忽略此訊息）</span>
-                            <span class="en-text">⚠️ Note: Please check jbeeti@gmail.com and click 'Activate Form' if this is your first time.</span>
-                        </p>
-                    </div>
                     <p class="text-brand-text font-bold mb-8 leading-relaxed">
                         <span class="zh-text">謝謝您留下資料，讓我們有機會認識您。<br>願神大大祝福您的每一天！</span>
                         <span class="en-text">Thank you for sharing your information with us.<br>May God bless you abundantly!</span>

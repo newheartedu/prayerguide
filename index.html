@@ -664,11 +664,11 @@
 
     <!-- ★ 調整恩典籤結構，使用 flex 佈局將按鈕牢牢鎖在最底端 ★ -->
     <div id="graceModal" class="modal-fade fixed inset-0 z-50 flex items-center justify-center bg-gray-900/80 backdrop-blur-sm p-4">
-        <!-- 卡片主體，手機版 min-h-[560px] 拉長比例，網頁版透過 sm:min-h-0 嚴格限制高度不變 -->
-        <div class="relative w-[92%] max-w-[340px] bg-white rounded-[1.5rem] shadow-2xl overflow-hidden flex flex-col min-h-[560px] sm:min-h-0">
+        <!-- 卡片主體，依據內容多寡自動撐高，最大高度 90vh，最大寬度 sm (384px) -->
+        <div class="relative w-full max-w-sm bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
             
-            <!-- 底層：結果內容，手機版增加上下內距與區塊間距，網頁版透過 sm: 壓回緊湊設定 -->
-            <div id="graceResultContent" class="w-full bg-white flex flex-col px-6 py-8 sm:px-5 sm:py-5 relative flex-grow">
+            <!-- 底層：結果內容，加入 overflow-y-auto 使過長內容可自動捲動 -->
+            <div id="graceResultContent" class="w-full bg-white flex flex-col px-6 py-8 sm:px-5 sm:py-5 relative flex-grow overflow-y-auto hide-scrollbar">
                 
                 <!-- 日期與主題：手機版字體稍微放大 text-[0.9rem]，網頁版 text-[0.8rem] -->
                 <div class="flex justify-center mb-5 sm:mb-3 flex-shrink-0">
@@ -723,7 +723,7 @@
             </div>
 
             <!-- 表層：刮刮卡遮罩 -->
-            <div id="scratchWrapper" class="absolute inset-0 z-20 rounded-[1.5rem] overflow-hidden flex flex-col justify-end pb-8">
+            <div id="scratchWrapper" class="absolute inset-0 z-20 rounded-2xl overflow-hidden flex flex-col justify-end pb-8">
                 <canvas id="scratchCanvas" class="absolute inset-0 w-full h-full cursor-pointer"></canvas>
                 
                 <div id="scratchOverlayText" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none transition-opacity duration-300">
